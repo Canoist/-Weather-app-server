@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const tokenService = require("../services/token.service");
+const { check, validationResult } = require("express-validator");
 
 // ПРОТЕТИРОВАТЬ код, затем удалить из БД значения, которые мы записали (user и tokens)
 // Написать код из 3 урока

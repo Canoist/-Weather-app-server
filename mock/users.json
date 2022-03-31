@@ -1,0 +1,26 @@
+[
+  {
+    "name": "John",
+    "email": "a@mail.ru",
+    "password": "123456789",
+    "favorites": ["6244afe1906e2fadfec0759e", "6244afe1906e2fadfec0759f"]
+  },
+  {
+    "name": "Luke",
+    "email": "b@mail.ru",
+    "password": "123456789",
+    "favorites": ["6244afe1906e2fadfec0759e", "6244afe1906e2fadfec075a1"]
+  },
+  {
+    "name": "Bob",
+    "email": "c@mail.ru",
+    "password": "123456789",
+    "favorites": ["6244afe1906e2fadfec0759e", "6244afe1906e2fadfec0759f"]
+  },
+  {
+    "name": "Huge",
+    "email": "d@mail.ru",
+    "password": "123456789",
+    "favorites": ["6244afe1906e2fadfec075a1", "6244afe1906e2fadfec075a0"]
+  }
+]
