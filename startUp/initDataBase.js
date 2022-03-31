@@ -1,16 +1,10 @@
 const favoritesMock = require("../mock/favorites.json");
 const Favorite = require("../models/Favorite");
-const User = require("../models/User");
-const usersMock = require("../mock/users.json");
 
 module.exports = async () => {
   const favorites = await Favorite.find();
   if (favorites.length !== favoritesMock.length) {
     await setInitialData(Favorite, favoritesMock);
-  }
-  const users = await User.find();
-  if (users.length !== usersMock.length) {
-    await setInitialData(User, usersMock);
   }
 };
 
