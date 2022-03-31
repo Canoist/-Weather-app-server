@@ -6,7 +6,7 @@ const schema = new Schema(
     refreshToken: { type: String, required: true },
   },
   {
-    timestamps: { createdAt: "created_at" },
+    timestamps: true,
   }
 );
 
