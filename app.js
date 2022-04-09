@@ -2,12 +2,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
 const chalk = require("chalk");
+const cors = require("cors");
+
 const app = express();
 const initDataBase = require("./startUp/initDataBase");
 const router = require("./routes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 app.use("/api", router);
 
 const PORT = config.get("port") ?? 8080;
