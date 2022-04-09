@@ -10,7 +10,7 @@ const router = express.Router({ mergeParams: true });
 
 router.post("/signUp", [
   check("email", "Некорректный email").isEmail(),
-  check("password", "Минимальная длина пароля 8 символов").isLength({ min: 8 }),
+  check("password", "Минимальная длина пароля 7 символов").isLength({ min: 7 }),
   async (req, res) => {
     try {
       const errors = validationResult(req);
@@ -19,7 +19,7 @@ router.post("/signUp", [
           error: {
             message: "INVALID_DATA",
             code: 400,
-            // errors: errors.array(),
+            errors: errors.array(),
           },
         });
       }
@@ -67,22 +67,25 @@ router.post("/signInWithPassword", [
         });
       }
       const { email, password } = req.body;
-
       const existingUser = await User.findOne({ email });
+
       if (!existingUser) {
         return res
           .status(400)
           .send({ error: { message: "EMAIL_NOT_FOUND", code: 400 } });
       }
 
-      const isPasswordEqual = bcrypt.compare(password, existingUser.password);
+      const isPasswordEqual = await bcrypt.compare(
+        password,
+        existingUser.password
+      );
       if (!isPasswordEqual) {
         return res
           .status(400)
           .send({ error: { message: "INVALID_PASSWORD", code: 400 } });
       }
 
-      const tokens = await tokenService.generate({ _id: existingUser._id });
+      const tokens = tokenService.generate({ _id: existingUser._id });
       await tokenService.save(existingUser._id, tokens.refreshToken);
       res.status(200).send({ ...tokens, userId: existingUser._id });
     } catch (error) {
