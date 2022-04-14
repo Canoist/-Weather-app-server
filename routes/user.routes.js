@@ -24,8 +24,8 @@ router.patch("/:userId", auth, async (req, res) => {
 
 router.get("/", auth, async (req, res) => {
   try {
-    const list = await User.find();
-    res.send(list);
+    const user = await User.findById(req.user._id);
+    res.send(user);
   } catch (error) {
     res
       .status(500)

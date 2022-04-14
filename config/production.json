@@ -1,0 +1,6 @@
+{
+  "port": 8080,
+  "mongoUri": "mongodb+srv://Canoist:a1s2d3f4g5@cluster0.ofufp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "accessSecret": "access secret",
+  "refreshSecret": "refresh secret"
+}
