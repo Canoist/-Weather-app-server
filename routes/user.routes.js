@@ -33,4 +33,21 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+router.delete("/:userId", auth, async (req, res) => {
+  try {
+    const { userId } = req.params;
+    if (userId === req.user._id) {
+      const updateUser = await User.deleteOne(userId);
+      console.log(updateUser);
+      res.send(updateUser);
+    } else {
+      res.status(401).json({ message: "Unauthorized" });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "На сервере произошла ошибка. Попробуйте позже" });
+  }
+});
+
 module.exports = router;

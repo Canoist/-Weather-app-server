@@ -6,7 +6,6 @@ const cors = require("cors");
 const path = require("path");
 
 const app = express();
-const initDataBase = require("./startUp/initDataBase");
 const router = require("./routes");
 
 app.use(express.json());
@@ -33,9 +32,6 @@ if (process.env.NODE_ENV === "production") {
 
 async function start() {
   try {
-    mongoose.connection.once("open", () => {
-      initDataBase();
-    });
     await mongoose.connect(config.get("mongoUri"));
     console.log(chalk.green(`MongoDB connected`));
     app.listen(PORT, () => {
