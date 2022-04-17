@@ -37,9 +37,9 @@ router.delete("/:userId", auth, async (req, res) => {
   try {
     const { userId } = req.params;
     if (userId === req.user._id) {
-      const updateUser = await User.deleteOne(userId);
-      console.log(updateUser);
-      res.send(updateUser);
+      const user = await User.findById(req.user._id);
+      const deleted = await user.deleteOne();
+      res.send(deleted);
     } else {
       res.status(401).json({ message: "Unauthorized" });
     }
